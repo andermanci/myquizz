@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+        function ikusBalioak(){
+            var sAux="";
+            var frm=document.getElementById("erregistro");
+            for(i=1;i<frm.elements.length;i++){
+              if(frm.elements[i].type == "radio"){
+                if(frm.elements[i].checked){
+                  sAux +=  frm.elements[i].name+"";
+                  sAux += frm.elements[i].value+"\n";
+                }
+              }else{
+                sAux += frm.elements[i].name+"";
+                sAux +=frm.elements[i].value+"\n"; 
+              }
+            }
+            alert(sAux);
+        } </script>
+
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #FFE4B5;
+      }
+      fieldset{
+        -moz-border-radius:5px;  
+        border-radius: 15px;  
+        -webkit-border-radius: 5px;
+        background-color: white;  
+        border: 0;
+      }
+      legend {
+        font-weight: bold;
+      }
+    </style> 
+  </head>
+
+  <body>
+  	<form id="erregistro" name="erregistro" onSubmit="ikusBalioak()">
+
+  		<div align="center">
+  		<fieldset>
+  		<legend align="center">Erregistratu</legend>	
+
+  		<br>
+  		(*)<input type="text" name="name" placeholder="Izen-abizenak" pattern="^((?:\S+\s+){2}\S+)"required><br><br>
+  		(*)<input type="text" name="email" placeholder="Posta elektronikoa" pattern="[0-9a-zA-Z]+[0-9]{3}@ikasle.ehu.(com|eus)"required><br><br>
+  		(*)<input type="password" name="password" placeholder="Pasahitza" pattern="[0-9a-zA-Z]{6}[0-9a-zA-Z]+" required><br><br>
+  		(*)<input type="text" name="telefone" placeholder="Telefonoa" pattern="[0-9]{9}"required><br><br>
+  		Aukeratu zure espezialitatea:<br><br>
+  		
+  		<input type="radio" name="Adarra" id="software" value="Software Ingenieritza" required>  Software Ingeniertiza<br>
+  		<input type="radio" name="Adarra" id="hardware" value="Hardware Ingenieritza" required>  Hardware Ingenieritza<br>
+  		<input type="radio" name="Adarra" id="konputagailu" value="Konputazio Ingenieritza" required>  Konputazio Ingenieritza<br><br>
+
+  		<textarea rows="6" cols="35" name="Gehigarriak" placeholder="Hemen sartu informazio gehigarria (Interesa duzun teknologiak eta erremintak...)"></textarea><br><br>
+
+      <input name="UploadedFile" type="file" /><br><br>
+
+  		<img src="fotocredits.png" style="width:200px;height:140px;"><br><br>
+		  <input name="Submit" type="submit" value="Erregistratu"><br><br>
+  		
+  		</fieldset><br><br>
+  		<span><a href='layout.html'>Atzera</a></span>
+  		</div>
+  		
+	</form>

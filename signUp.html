@@ -13,9 +13,15 @@
             var r1=frm.elements[5];
             var r2=frm.elements[6];
             var r3=frm.elements[7];
+            var r4=frm.elements[8];
+
             
             
-            if(name=="" || name==null){hutsak+="Izen-abizenak sartu behar dituzu\n";}
+            if(name=="" || name==null){
+              hutsak+="Izen-abizenak sartu behar dituzu\n";
+            }else{
+              hutsak+=izenaZuzena(name);
+            }
             if(email=="" || email==null){
               hutsak+="Posta elektronikoa sartu behar duzu\n";
             }
@@ -32,7 +38,7 @@
               else{
                 hutsak+=telZuzena(tel);
               }
-            if(!(r1.checked  || r2.checked || r3.checked)){hutsak+="Adar bat aukeratu\n";} 
+            if(!(r1.checked  || r2.checked || r3.checked || r4.checked)){hutsak+="Adar bat aukeratu\n";} 
             if(hutsak==""){
               hutsak += "Datu guztiak sartu dituzu!!"
               //ikusBalioak();
@@ -57,6 +63,39 @@
               return "9 zenbakiz osatu behar da telefonoa\n"
             }
         }
+        function izenaZuzena(name){
+            var re = /^((?:\S+\s+){2}\S+)/;
+            if(re.test(name)){
+              return "";
+            }else{
+              return "Izena eta bi abizen sartu\n"
+            }
+        }
+        function show(){ 
+          document.getElementById('area').style.display = 'block'; 
+        }
+        function hide(){ 
+          document.getElementById('area').style.display = 'none'; 
+        }
+
+       
+
+        /*function readURL(input) {
+
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+              $('#blah').attr('src', e.target.result);
+            }
+
+          reader.readAsDataURL(input.files[0]);
+          }
+        }
+
+        $("#imgInp").change(function(){
+          readURL(this);
+        });*/
 
         /*function ikusBalioak(){
             var sAux="";
@@ -73,7 +112,7 @@
               }
             }
             alert(sAux);
-        }*/ </script>
+        } */</script>
 
 <html>
   <head>
@@ -108,15 +147,26 @@
   		(*)<input type="text" name="tfl" placeholder="Telefonoa"><br><br>
   		Aukeratu zure espezialitatea:<br><br>
   		
-  		<input type="radio" name="Adarra" id="software" value="Software Ingenieritza">  Software Ingeniertiza<br>
-  		<input type="radio" name="Adarra" id="hardware" value="Hardware Ingenieritza">  Hardware Ingenieritza<br>
-  		<input type="radio" name="Adarra" id="konputagailu" value="Konputazio Ingenieritza">  Konputazio Ingenieritza<br><br>
+  		<input type="radio" name="Adarra" id="software" value="Software Ingenieritza" onclick="hide();">  Software Ingeniertiza<br>
+  		<input type="radio" name="Adarra" id="hardware" value="Hardware Ingenieritza" onclick="hide();">  Hardware Ingenieritza<br>
+  		<input type="radio" name="Adarra" id="konputagailu" value="Konputazio Ingenieritza" onclick="hide();">  Konputazio Ingenieritza<br><br>
+      <input type="radio" name="Adarra" id="besterik" value="Besterik" onclick="show();">  "Besterik"<br><br>
 
-  		<textarea rows="6" cols="35" name="Gehigarriak" placeholder="Hemen sartu informazio gehigarria (Interesa duzun teknologiak eta erremintak...)"></textarea><br><br>
+  		<textarea id="area" style="display: none;" rows="6" cols="35" name="Gehigarriak" placeholder="Idatzi hemen zure espezialitatea"></textarea><br><br>
 
-      <input name="UploadedFile" type="file" /><br><br>
+      <input type="file" accept="image/*" onchange="loadFile(event)"><br><br>
+      <img id="output" style="width:200px;height:140px;"/>
+      <script>
+        var loadFile = function(event) {
+          var reader = new FileReader();
+          reader.onload = function(){
+            var output = document.getElementById('output');
+            output.src = reader.result;
+          };
+          reader.readAsDataURL(event.target.files[0]);
+        };
+      </script><br><br>
 
-  		<img src="fotocredits.png" style="width:200px;height:140px;"><br><br>
 		  <input name="Submit" type="submit" value="Erregistratu"><br><br>
   		
   		</fieldset><br><br>
