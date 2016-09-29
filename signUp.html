@@ -7,20 +7,26 @@
 
             var frm=document.getElementById("erregistro");
             var name=frm.elements[1].value;
-            var email=frm.elements[2].value;
-            var pass=frm.elements[3].value;
-            var tel=frm.elements[4].value;
-            var r1=frm.elements[5];
-            var r2=frm.elements[6];
-            var r3=frm.elements[7];
-            var r4=frm.elements[8];
+            var surname=frm.elements[2].value;
+            var email=frm.elements[3].value;
+            var pass=frm.elements[4].value;
+            var tel=frm.elements[5].value;
+            var r1=frm.elements[6];
+            var r2=frm.elements[7];
+            var r3=frm.elements[8];
+            var r4=frm.elements[9];
 
             
             
             if(name=="" || name==null){
-              hutsak+="Izen-abizenak sartu behar dituzu\n";
+              hutsak+="Izena sartu behar duzu\n";
             }else{
               hutsak+=izenaZuzena(name);
+            }
+            if(surname=="" || surname==null){
+              hutsak+="Abizenak sartu behar dituzu\n";
+            }else{
+              hutsak+=abizenaZuzena(surname);
             }
             if(email=="" || email==null){
               hutsak+="Posta elektronikoa sartu behar duzu\n";
@@ -63,12 +69,21 @@
               return "9 zenbakiz osatu behar da telefonoa\n"
             }
         }
+        
         function izenaZuzena(name){
-            var re = /^((?:\S+\s+){2}\S+)/;
+            var re = /[A-Z]{1}[a-z]*/;
             if(re.test(name)){
               return "";
             }else{
-              return "Izena eta bi abizen sartu\n"
+              return "Izenak larriz hasi behar du\n"
+            }
+        }
+        function abizenaZuzena(surname){
+            var re = /((([-])(\p{L}+))|((\p{L}+ )(de)(( la)?)( \p{L}+)))?/;
+            if(re.test(surname)){
+              return "";
+            }else{
+              return "Bi abizen sartu\n"
             }
         }
         function show(){ 
@@ -134,14 +149,15 @@
   </head>
 
   <body>
-  	<form id="erregistro" name="erregistro" onSubmit="return validateForm()">
+  	<form id="erregistro" name="erregistro" onSubmit="return validateForm()" method="post" action="Enroll.php">
 
   		<div align="center">
   		<fieldset>
   		<legend align="center">Erregistratu</legend>	
 
   		<br>
-  		(*)<input type="text" name="izen" placeholder="Izen-abizenak"><br><br>
+  		(*)<input type="text" name="izen" placeholder="Izena"><br><br>
+      (*)<input type="text" name="abizen" placeholder="Abizenak"><br><br>
   		(*)<input type="text" name="email" placeholder="Posta elektronikoa"><br><br>
   		(*)<input type="password" name="pass" placeholder="Pasahitza"><br><br>
   		(*)<input type="text" name="tfl" placeholder="Telefonoa"><br><br>
@@ -154,7 +170,10 @@
 
   		<textarea id="area" style="display: none;" rows="6" cols="35" name="Gehigarriak" placeholder="Idatzi hemen zure espezialitatea"></textarea><br><br>
 
-      <input type="file" accept="image/*" onchange="loadFile(event)"><br><br>
+      Sartu hemen sure interesak:<br>
+      <textarea  name="gehigarria" rows="8" cols="30"></textarea><br><br>
+
+      <input type="file" name="argazkia" accept="image/*" onchange="loadFile(event)"><br><br>
       <img id="output" style="width:200px;height:140px;"/>
       <script>
         var loadFile = function(event) {
