@@ -45,8 +45,17 @@
                 hutsak+=telZuzena(tel);
               }
             if(!(r1.checked  || r2.checked || r3.checked || r4.checked)){hutsak+="Adar bat aukeratu\n";} 
+			if(r4.checked){
+				if(document.getElementById('area').value==""|| document.getElementById('area').value==null){
+					hutsak+="Adarra sartu behar duzu\n";
+				}
+				else{
+					r4.value=document.getElementById('area').value;
+				}
+			}
+			
             if(hutsak==""){
-              hutsak += "Datu guztiak sartu dituzu!!"
+              hutsak += "Datu guztiak sartu dituzu!!";
               //ikusBalioak();
 			  alert(hutsak); 
 			  return true;
@@ -97,41 +106,7 @@
           document.getElementById('area').style.display = 'none'; 
         }
 
-       
-
-        /*function readURL(input) {
-
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-              $('#blah').attr('src', e.target.result);
-            }
-
-          reader.readAsDataURL(input.files[0]);
-          }
-        }
-
-        $("#imgInp").change(function(){
-          readURL(this);
-        });*/
-
-        /*function ikusBalioak(){
-            var sAux="";
-            var frm=document.getElementById("erregistro");
-            for(i=1;i<frm.elements.length;i++){
-              if(frm.elements[i].type == "radio"){
-                if(frm.elements[i].checked){
-                  sAux +="IZENA: " + frm.elements[i].name+"";
-                  sAux +=" BALIOA: " + frm.elements[i].value+"\n";
-                }
-              }else{
-                sAux +="IZENA: " + frm.elements[i].name+"";
-                sAux +=" BALIOA: " + frm.elements[i].value+"\n"; 
-              }
-            }
-            alert(sAux);
-        } */</script>
+   </script>
 
 <html>
   <head>
@@ -153,7 +128,7 @@
   </head>
 
   <body>
-  	<form id="erregistro" name="erregistro" onSubmit="return validateForm()" method="post" action="Enroll.php">
+  	<form id="erregistro" name="erregistro" onSubmit="return validateForm()" method="post" action="Enroll.php" enctype="multipart/form-data">
 
   		<div align="center">
   		<fieldset>
@@ -172,7 +147,7 @@
   		<input type="radio" name="Adarra" id="konputagailu" value="Konputazio Ingenieritza" onclick="hide();">  Konputazio Ingenieritza<br><br>
       <input type="radio" name="Adarra" id="besterik" value="Besterik" onclick="show();">  "Besterik"<br><br>
 
-  		<textarea id="area" style="display: none;" rows="6" cols="35" name="Gehigarriak" placeholder="Idatzi hemen zure espezialitatea"></textarea><br><br>
+  		<textarea id="area" style="display: none;" rows="6" cols="35" name="Gehigarriak" value="" placeholder="Idatzi hemen zure espezialitatea"></textarea><br><br>
 
       Sartu hemen sure interesak:<br>
       <textarea  name="gehigarria" rows="8" cols="30"></textarea><br><br>
