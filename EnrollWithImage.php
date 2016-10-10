@@ -2,7 +2,7 @@
 <?php
 	$link = mysqli_connect("mysql.hostinger.es","u883675844_urtzi","Otamendi","u883675844_quizz");
 	if(filter_var($_POST[email], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^(([^<>()\[\]\\.,;:\s@]+(\.[^<>()\[\]\\.,;:\s@]+)*)|(.+))[0-9]{3}@ikasle.ehu.[eus|es]/")))== FALSE){
-		echo("$_POST[email] is not a valid email address");
+		echo("$_POST[email] ez da email egokia. ");
 	}
 	else {
 		if (getimagesize($_FILES['argazkia']['tmp_name'])==FALSE) {
