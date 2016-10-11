@@ -5,7 +5,7 @@
 		echo("$_POST[email] ez da email egokia. ");
 	}
 	else {
-		if(filter_var($_POST[tlf], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[0-9]{9}/")))== FALSE){
+		if(filter_var($_POST[tfl], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[0-9]{9}/")))== FALSE){
 		echo("$_POST[tfl] ez da telefono  formatu egokia. ");
 		}
 		else{
