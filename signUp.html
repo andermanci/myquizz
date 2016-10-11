@@ -28,13 +28,13 @@
             }else{
               hutsak+=abizenaZuzena(surname);
             }
-            //if(email=="" || email==null){
-            //  hutsak+="Posta elektronikoa sartu behar duzu\n";
-            //}
-            //else{
-            //  hutsak+=postaZuzena(email);
-            //}
-			//
+            if(email=="" || email==null){
+              hutsak+="Posta elektronikoa sartu behar duzu\n";
+            }
+            else{
+             hutsak+=postaZuzena(email);
+            }
+			
             if(pass=="" || pass==null || pass.length<6){
               hutsak+="Pasahitzak gutxienez 6 karaktere izan behar ditu\n";
             }
