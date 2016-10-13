@@ -1,7 +1,7 @@
 
 <?php
 	$link = mysqli_connect("mysql.hostinger.es","u883675844_urtzi","Otamendi","u883675844_quizz");
-	if(filter_var($_POST[email], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^(([^<>()\[\]\\.,;:\s@]+(\.[^<>()\[\]\\.,;:\s@]+)*)|(.+))[0-9]{3}@ikasle.ehu.[eus|es]/")))== FALSE){
+	if(filter_var($_POST[email], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[a-z]*[0-9]{3}@ikasle.ehu.[eus|es]/")))== FALSE){
 		echo("$_POST[email] ez da email egokia. ");
 	}
 	else {
